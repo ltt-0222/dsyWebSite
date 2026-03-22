@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人作品集 | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏 */
+        nav {
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #212529;
+        }
+
+        .nav-links a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #495057;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #212529;
+        }
+
+        .contact-btn {
+            padding: 8px 20px;
+            background-color: #212529;
+            color: #fff;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        /* 英雄区 */
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #495057;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: #212529;
+            color: #fff;
+            border-color: #212529;
+        }
+
+        /* 通用区块 */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* 关于我 */
+        .about-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .about-text h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #495057;
+            margin-bottom: 15px;
+        }
+
+        .skill-item {
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background-color: #495057;
+        }
+
+        /* 工作经历 & 获奖经历 */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .timeline-date {
+            min-width: 120px;
+            font-weight: 600;
+            color: #6c757d;
+        }
+
+        .timeline-content h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content .company {
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: #6c757d;
+        }
+
+        /* 作品展示 */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-img {
+            height: 200px;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #6c757d;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-category {
+            font-size: 14px;
+            color: #495057;
+            margin-bottom: 8px;
+        }
+
+        .project-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .project-info p {
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-tags span {
+            padding: 4px 10px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #495057;
+        }
+
+        /* --- 作品详情弹窗 新增 --- */
+        .project-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .modal-close {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background: #212529;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 400px;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: #6c757d;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .modal-info h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .modal-category {
+            color: #495057;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .modal-desc {
+            color: #495057;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .modal-detail-item {
+            margin: 15px 0;
+            color: #6c757d;
+        }
+
+        .modal-detail-item strong {
+            color: #212529;
+        }
+
+        /* 页脚 */
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            color: #6c757d;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .about-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-img {
+                height: 250px;
+            }
+        }
+
+        .carousel {
+            position: relative;
+            width: 700px;
+            height: 500px;
+            margin: 50px auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-images {
+            display: flex;
+            height: 100%;
+            transition: transform 0.4s ease;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        /* 左右按钮 */
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.4);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .prev {
+            left: 15px;
+        }
+
+        .next {
+            right: 15px;
+        }
+
+        .btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        /* 小圆点 */
+        .dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .dot.active {
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container nav-wrapper">
+            <div class="logo">DSY.</div>
+            <div class="nav-links">
+                <a href="#about">关于</a>
+                <a href="#experience">经历</a>
+                <a href="#awards">获奖</a>
+                <a href="#projects">作品</a>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- 英雄区 -->
+    <section class="hero">
+        <div class="container">
+            <h1>Hello I'm 邓思宇</h1>
+            <p>空间设计 / 装置设计 / 品牌终端设计 | 现居沈阳</p>
+            <div class="social-links">
+                <p>电话：15566266833<br>
+                    邮箱：15566266833@163.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我 & 技能 -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">关于我 & 技能</h2>
+            <div class="about-wrapper">
+                <div class="about-text">
+                    <h2>自我介绍</h2>
+                    <p>你好，我是邓思宇。一名懂施工的方案设计师。我相信好的设计是理性与情感的交汇点，从空间本体出发，能够解决问题，带来价值。四年间为科技、文化、消费品领域的客户提供了设计服务。</p>
+                    <p>责过设计全流程项目，擅长团队合作与跨专业交流。</p>
+                    <p>📌正在进行项目：某品牌教育机构SI空间体系设计。</p>
+                    <p>除了本职工作，我还喜欢逛公园、逛商场、观察生活、运动、研究新事物。</p>
+                </div>
+                <div class="skills">
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>施工</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>方案设计</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>办公软件</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>设计软件</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>AI运用</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作经历 -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">工作经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2021.08 - 2021.12</div>
+                    <div class="timeline-content">
+                        <h3>实习设计师</h3>
+                        <div class="company">上海天华建筑设计有限公司 | 上海</div>
+                        <p>融创社区商业标准化产品：负责社区商业标准化产品体系搭建，按项目规模、定位档次、客群层级划分多档产品模型；针对不同客群需求，策划空间模式、业态功能模块、
+                            配置标准，输出可复用、可快速适配的标准化手册与落地指引，实现品牌形象统一与项目高效复制。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2022.09 - 至今</div>
+                    <div class="timeline-content">
+                        <h3>空间设计师</h3>
+                        <div class="company">以墨设计工作室 | 沈阳</div>
+                        <h4>茅台展厅：</h4>
+                        <p>直击传统展厅静态陈列痛点，挖掘茅台文化与酿造内核，通过五感体验设计，如气味装置打造沉浸式观展体验统筹展品布局与叙事动线，
+                            结合灯光打造视觉焦点，传达品牌氛围与文化。方案中标，后期跟进材料选型与施工，确保效果高度还原。
+                        </p>
+                        <h4>沈阳故宫文创室内空间：</h4>
+                        <p>
+                            负责室内全案设计，基于老建筑保护与更新需求，确立新旧相生、和而不同的设计思路：在原有空间中植入模块化空间盒子。设计阶段提取沈阳故宫经典色彩系，
+                            并将天花形制、窗格纹样、榫卯结构等元素用现代手法转译运用至空间细节；完成平面规划、流线设计，并原创定制化展台与零售家具，实现空间落地与文化呈现。
+                        </p>
+                        <h4>城市街区更新改造：</h4>
+                        <p>
+                            通过前期调研、需求分析与活力场景推演制定整体方案；采用渐进式更新策略，设计艺术装置与互动节点吸引人流，激活街区活力。完成方案深化及施工图绘制，并全程跟进现场落地；项目落地后显著提升街区人气与打卡热度，并获媒体报道。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 获奖经历 -->
+    <section id="awards">
+        <div class="container">
+            <h2 class="section-title">获奖经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-content">
+                        <h3>第十九届亚洲设计学年比赛优秀奖</h3>
+                        <div class="company">临时与可移动建筑空间 | 城市之上-above the city</div>
+                        <p>以高密度城市为研究对象，探讨了模块化标准建筑的多元拓展可能，通过灵活的装配体系，可对既有建筑进行加建与更新，
+                            让原本居住于地下与格子间的人们，也能拥有沐浴在阳光下的舒适居住空间。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-content">
+                        <h3>第九届全国高校数字艺术设计大赛辽宁省赛区二等奖</h3>
+                        <div class="company">城市空间类 | 寒尽春生</div>
+                        <p>以北大营遗址为起点，打造红色文化时间轴，结合广场、公园形成公共活力节点，两侧植入商业功能实现空间过渡；
+                            北侧保留汽车产业特色，增设汽车展馆、科技企业与沿街商业。遗址以北打造民俗街区，同时补足片区教育短板，
+                            新建小学与教育基地，并规划宜居住区。项目以一条文化主轴、多元功能节点激活片区活力，兼具红色文化传承、爱国主义
+                            教育与城市更新价值。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021</div>
+                    <div class="timeline-content">
+                        <h3>2021年辽宁省工业改造与保护创新设计大赛优秀奖</h3>
+                        <div class="company">工业改造保护类 | 遗脉新生</div>
+                        <p>对老旧工业厂房进行保护性改造。在保留工业肌理与历史记忆的基础上，植入现代功能，激活闲置空间，实现工业遗产的文脉传承与活力再生。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品展示 -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">精选作品（点击查看详情）</h2>
+            <div class="projects-grid">
+                <!-- 作品1 -->
+                <div class="project-card" onclick="openProject(1)">
+                    <!-- <div class="project-img">🎨</div> -->
+                    <img src="picFolder/gugong1/pic (1).PNG" style="width:100%">
+                    <div class="project-info">
+                        <div class="project-category">室内设计</div>
+                        <h3>沈阳故宫文创空间</h3>
+                        <p>由于现状建筑属于历史建筑，所以设计的新空间结构要便于安装且不破坏现有建筑，
+                            所以设计时采用模数体系。并从故宫里提取经典颜色与窗格、榫卯、天花等经典元素，并运用现代手法解构表达。体现出新旧相生，和而不同。</p>
+                        <div class="project-tags">
+                            <span>文化</span>
+                            <span>落地项目</span>
+                            <span>模块</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 作品2 -->
+                <div class="project-card" onclick="openProject(2)">
+                    <!-- <div class="project-img">📱</div> -->
+                    <img src="picFolder/maotai2/pic (1).PNG" style="width:100%">
+                    <div class="project-info">
+                        <div class="project-category">展会设计</div>
+                        <h3>茅台展厅</h3>
+                        <p>通过深挖茅台历史文化，提取茅台品牌不同元素并运用到设计中，让参观者仿佛穿越时空，亲身感受茅台的历史魅力。
+                            用建筑美学与自然美学并结合现代技术演绎茅台千年酿造智慧,追溯历史，溯源初遇之境。</p>
+                        <div class="project-tags">
+                            <span>文化</span>
+                            <span>品牌</span>
+                            <span>落地项目</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 作品3 -->
+                <div class="project-card" onclick="openProject(3)">
+                    <!-- <div class="project-img">🖼️</div> -->
+                    <img src="picFolder/sunac3/pic (1).PNG" style="width:100%">
+                    <div class="project-info">
+                        <div class="project-category">标准模块设计</div>
+                        <h3>融创社区商业标准化产品</h3>
+                        <p>社区商业已从传统1.0基础配套模式迭代升级至3.0复合型生活场景模式。消费需求也从最初的基础需求
+                            延伸至品质化升级需求与多元化精神需求。 设计将围绕升级后的全维度需求，构建复合化业态体系，打造沉浸式、
+                            场景化的社区生活空间，真正实现从“基础配套”到“生活方式中心”的价值跃升。</p>
+                        <div class="project-tags">
+                            <span>社区商业</span>
+                            <span>标准模块</span>
+                            <span>标准化手册</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 作品4 -->
+                <div class="project-card" onclick="openProject(4)">
+                    <!-- <div class="project-img">🏙️</div> -->
+                    <img src="picFolder/coffee4/pic (1).PNG" style="width:100%">
+                    <div class="project-info">
+                        <div class="project-category">更新改造</div>
+                        <h3>城市空间更新改造</h3>
+                        <p>一期设计理念:金属脚手架+多元化盒子补丁。并将咖啡豆不同烘焙程度的颜色作为街区的主体色。
+                            打造八经咖啡小巷一期。二期以市井为主题，联动主题IP打造一系列艺术装置与网红打卡点等。</p>
+                        <div class="project-tags">
+                            <span>城市更新</span>
+                            <span>艺术装置</span>
+                            <span>落地项目</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 作品5 -->
+                <div class="project-card" onclick="openProject(5)">
+                    <!-- <div class="project-img">🏙️</div> -->
+                    <img src="picFolder/Macro5/pic (1).PNG" style="width:100%">
+                    <div class="project-info">
+                        <div class="project-category">展厅设计</div>
+                        <h3>万家乐上海AWE展厅</h3>
+                        <p>营造独特沉浸式未来家电体验空间，向观展者传递万家乐致力于成为“全球亿万家庭美好厨卫生活创造者”、
+                            “万家乐、乐万家”的企业理念，并增强品牌认同感。</p>
+                        <div class="project-tags">
+                            <span>品牌</span>
+                            <span>展览</span>
+                            <span>落地项目</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 作品6 -->
+                <div class="project-card" onclick="openProject(6)">
+                    <!-- <div class="project-img">🏙️</div> -->
+                    <img src="picFolder/others6/pic (1).PNG" style="width:100%">
+                    <div class="project-info">
+                        <div class="project-category">合集</div>
+                        <h3>其他项目合集</h3>
+                        <p>沈阳化工厂大楼改造工、
+                            优车派品牌体验中心、临时建筑、快闪集市、瓷器博物馆、私人展厅、</p>
+                        <div class="project-tags">
+                            <span>展品</span>
+                            <span>灯光</span>
+                            <span>科技</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品详情弹窗 -->
+    <div class="project-modal" id="projectModal">
+        <button class="modal-close" onclick="closeProject()">×</button>
+        <div class="modal-content">
+            <div class="carousel" id="carousel">
+                <div class="carousel-images" id="imgBox">
+                </div>
+                <button class="btn prev" id="prev">&lt;</button>
+                <button class="btn next" id="next">&gt;</button>
+                <div class="dots" id="dots"></div>
+            </div>
+            <div class="modal-info">
+                <h2 id="modalTitle">作品标题</h2>
+                <div class="modal-category" id="modalCategory">分类</div>
+                <!-- <div class="modal-desc" id="modalDesc">详细介绍</div> -->
+                <!-- <div class="modal-detail-item"><strong>设计周期：</strong><span id="modalTime">1.5month</span></div> -->
+                <div class="modal-detail-item"><strong>使用工具：</strong><span id="modalTool">Figma / AI</span></div>
+                <div class="modal-detail-item"><strong>项目角色：</strong><span id="modalRole">独立设计师</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 邓思宇 | 个人作品集</p>
+        </div>
+    </footer>
+
+    <!-- 作品点击交互 JS -->
+    <script>
+        const imgBox = document.getElementById('imgBox');
+        const dotsBox = document.getElementById('dots');
+        const prev = document.getElementById('prev');
+        const next = document.getElementById('next');
+        let imgs = [];
+        let len = 0;
+        let idx = 0;
+        let timer;
+
+        // 作品数据
+        const projects = [
+            {
+                icon: `
+                    <img src="picFolder/gugong1/pic (1).png" alt="图1">
+                    <img src="picFolder/gugong1/pic (2).png" alt="图2">
+                    <img src="picFolder/gugong1/pic (3).png" alt="图3">
+                    <img src="picFolder/gugong1/pic (4).png" alt="图4">
+                    <img src="picFolder/gugong1/pic (5).png" alt="图5">
+                `,
+                title: "沈阳故宫文创空间",
+                category: "室内设计 | 模块化",
+                desc: "该项目为创意工作室NOVA打造完整动态视觉识别系统，以几何构成作为核心视觉语言，包含logo动态演绎、品牌色彩规范、字体系统、印刷物料与数字界面应用。整体风格现代、克制、具有识别性，适用于多场景延展。",
+                time: "14天",
+                tool: "PPT/EXCEL/CAD/SketchUp/Enscape/PS",
+                role: "主案设计师 | 材料选择"
+            },
+            {
+                icon: `
+                    <img src="picFolder/maotai2/pic (1).png" alt="图1">
+                    <img src="picFolder/maotai2/pic (2).png" alt="图2">
+                    <img src="picFolder/maotai2/pic (3).png" alt="图3">
+                    <img src="picFolder/maotai2/pic (4).png" alt="图4">
+                    <img src="picFolder/maotai2/pic (5).png" alt="图5">
+                `,
+                title: "茅台展厅",
+                category: "展会设计",
+                desc: "一款面向植物爱好者的智能养护应用，提供植物识别、浇水提醒、光照建议、社区分享功能。从用户调研、用户旅程、信息架构到高保真原型与交互动效完整输出，设计风格清新简约，强调易用性与情感化体验。",
+                time: "30天",
+                tool: "PPT/EXCEL/CAD/SketchUp/Enscape/PS/AI工具",
+                role: "主案设计师 | 材料选择"
+            },
+            {
+                icon: `
+                    <img src="picFolder/sunac3/pic (1).png" alt="图1">
+                    <img src="picFolder/sunac3/pic (2).png" alt="图2">
+                    <img src="picFolder/sunac3/pic (3).png" alt="图3">
+                    <img src="picFolder/sunac3/pic (4).png" alt="图4">
+                `,
+                title: "融创社区商业标准化产品",
+                category: "标准化产品",
+                desc: "以抽象线条与几何色块解构六座城市的城市肌理与文化符号，通过数码版画与丝网印刷两种工艺呈现。作品强调情绪表达与城市记忆，限量30份，兼具艺术性与收藏价值。",
+                time: "长期项目",
+                tool: "PPT/EXCEL/CAD/SketchUp/Photoshop",
+                role: "设计成员|手册编制成员"
+            },
+            {
+                icon: `
+                    <img src="picFolder/coffee4/pic (1).png" alt="图1">
+                    <img src="picFolder/coffee4/pic (2).png" alt="图2">
+                    <img src="picFolder/coffee4/pic (3).png" alt="图3">
+                `,
+                title: "城市空间更新改造",
+                category: "装置设计 | 更新",
+                desc: "以叙事性空间设计为核心，通过动线、光影、材质与展陈方式，呈现城市历史变迁与当代生活的对话。项目从概念方案、效果图、施工图到现场跟进全流程负责，获得中国空间设计大赛银奖。",
+                time: "90天",
+                tool: "PPT/EXCEL/CAD/SketchUp//Rhino/Enscape/PS",
+                role: "主创设计师 | 材料选择 | 绘制施工图 | 施工落地 "
+            },
+            {
+                icon: `
+                    <img src="picFolder/Macro5/pic (1).png" alt="图1">
+                    <img src="picFolder/Macro5/pic (2).png" alt="图2">
+                    <img src="picFolder/Macro5/pic (3).png" alt="图3">
+                `,
+                title: "万家乐上海AWE展厅",
+                category: "展厅设计",
+                desc: "以叙事性空间设计为核心，通过动线、光影、材质与展陈方式，呈现城市历史变迁与当代生活的对话。项目从概念方案、效果图、施工图到现场跟进全流程负责，获得中国空间设计大赛银奖。",
+                time: "90天",
+                tool: "PPT/EXCEL/CAD/SketchUp/Enscape/PS/AI工具",
+                role: "主创设计师 | 材料选择 | 绘制施工图  "
+            },
+            {
+                icon: `
+                    <img src="picFolder/others6/pic (1).png" alt="图1">
+                    <img src="picFolder/others6/pic (2).png" alt="图2">
+                    <img src="picFolder/others6/pic (3).png" alt="图3">
+                    <img src="picFolder/others6/pic (4).png" alt="图4">
+                `,
+                title: "其他项目合集",
+                category: "快闪集市 | 临时建筑 | 展厅 | 改造",
+                desc: "以叙事性空间设计为核心，通过动线、光影、材质与展陈方式，呈现城市历史变迁与当代生活的对话。项目从概念方案、效果图、施工图到现场跟进全流程负责，获得中国空间设计大赛银奖。",
+                time: "90天",
+                tool: "PPT/EXCEL/CAD/SketchUp//Rhino/Enscape/PS/nano banana",
+                role: "主创设计师 | 材料选择 | 绘制施工图 | 施工落地 "
+            }
+        ];
+
+        // 打开作品详情
+        function openProject(index) {
+            const project = projects[index - 1];
+            document.getElementById("imgBox").innerHTML = project.icon;
+            document.getElementById("modalTitle").innerText = project.title;
+            document.getElementById("modalCategory").innerText = project.category;
+            // document.getElementById("modalDesc").innerText = project.desc;
+            // document.getElementById("modalTime").innerText = project.time;
+            document.getElementById("modalTool").innerText = project.tool;
+            document.getElementById("modalRole").innerText = project.role;
+            document.getElementById("projectModal").style.display = "block";
+            document.body.style.overflow = "hidden";
+
+            // 初始化轮播图
+            initCarousel();
+        }
+
+        // 关闭作品详情
+        function closeProject() {
+            document.getElementById("projectModal").style.display = "none";
+            document.body.style.overflow = "auto";
+            stopAutoPlay();
+        }
+
+        // 初始化轮播图
+        function initCarousel() {
+            // 停止之前的自动播放
+            stopAutoPlay();
+
+            // 清空圆点
+            dotsBox.innerHTML = '';
+
+            // 更新图片列表和数量
+            imgs = imgBox.children;
+            len = imgs.length;
+            idx = 0;
+
+            // 如果没有图片，直接返回
+            if (len === 0) return;
+
+            // 生成小圆点
+            for (let i = 0; i < len; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                dot.dataset.index = i;
+                dotsBox.appendChild(dot);
+            }
+
+            // 初始化显示
+            update();
+
+            // 启动自动播放
+            startAutoPlay();
+        }
+
+        // 获取所有圆点（HTMLCollection 转为数组便于操作）
+        const getDots = () => Array.from(dotsBox.children);
+
+        // 更新显示：移动图片 + 高亮圆点
+        function update() {
+            imgBox.style.transform = `translateX(-${idx * 100}%)`;
+            const dots = getDots();
+            dots.forEach(dot => dot.classList.remove('active'));
+            if (dots[idx]) {
+                dots[idx].classList.add('active');
+            }
+        }
+
+        // 下一张
+        function nextSlide() {
+            if (len === 0) return;
+            idx = (idx + 1) % len;
+            update();
+        }
+
+        // 上一张
+        function prevSlide() {
+            if (len === 0) return;
+            idx = (idx - 1 + len) % len;
+            update();
+        }
+
+        // 点击圆点
+        dotsBox.addEventListener('click', (e) => {
+            if (e.target.classList.contains('dot')) {
+                idx = parseInt(e.target.dataset.index, 10);
+                update();
+            }
+        });
+
+        // 自动播放（确保每次只开启一个定时器）
+        function startAutoPlay() {
+            stopAutoPlay();
+            if (len > 1) {
+                timer = setInterval(nextSlide, 2500);
+            }
+        }
+
+        function stopAutoPlay() {
+            if (timer) {
+                clearInterval(timer);
+                timer = null;
+            }
+        }
+
+        // 悬停暂停，离开继续
+        const carousel = document.getElementById('carousel');
+        carousel.addEventListener('mouseenter', stopAutoPlay);
+        carousel.addEventListener('mouseleave', startAutoPlay);
+
+        // 按钮事件
+        next.addEventListener('click', nextSlide);
+        prev.addEventListener('click', prevSlide);
+    </script>
+</body>
+
+</html>
